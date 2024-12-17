@@ -1,0 +1,470 @@
+/* GLOBAL */
+
+/* Recurso externo obtido no google. Se trata da fonte ROBOTO */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Criar variáveis de cor */
+:root {
+    --main-color: #da190f;
+    --bg: #13131a;
+    --bg-card: #0c0c14;
+    --border: 0.1rem solid rgba(255, 255, 255, 0.3);
+}
+
+/* Queremos "zerar" o layout da página. Para termos controle sobre tudo. */
+* {
+    font-family: 'Roboto', sans-serif;  /* Fonte da nossa página. É nesse momento que utilizares a importação da fonte Roboto */
+    margin: 0 ;                          /* Margem */
+    padding: 0;                         /* Espaço interno */
+    box-sizing: border-box;             /* Para que a Margin e o Padding possam se adaptar de acordo com cada elemento  */
+    outline: none;                      /* Linhas */
+    border: 0;                          /* Bordas */
+    text-decoration: none;              /* Decoração */
+    /* text-transform: capitalize;         Transforma a primeira letra de cada palavra em maiúscula   */
+    transition: 0.2s linear;            /*Transição suavizada   */
+}
+
+html {
+    font-size: 62.5%;           /* Tamanho da fonte */
+    overflow-x: hidden;         /* Garantia para que não haja escape, ou seja, todo o conteúdo que ultrapassar a área visível do elemento horizontalmente (eixo x) será ocultado */
+    scroll-padding-top: 9rem;   /* Será adicionado um espaço extra no topo da área visível do elemento. */
+    scroll-behavior: smooth;    /* Efeito de rolagem suave */
+}
+
+/* Barra lateral de rolagem */
+html::-webkit-scrollbar {
+    width: 0.8rem;
+}
+/* Barra lateral transparente */
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+/* Aparência da barra lateral na página */
+html::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 5rem
+}
+
+body {
+    background: var(--bg);
+}
+
+section {
+    padding: 2rem 7%;
+}
+
+.heading {
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+    margin-top: 2rem;
+}
+
+/* Queremos atingir todo elemento que possua a classe "heading" e que TAMBÉM possua um "span". */
+.heading span {
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 0.9rem 3rem;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--main-color);
+    cursor: pointer;
+    text-transform: capitalize; 
+}
+/* Fazer determinada ação quando o mouse estiver sobre o botão */
+.btn:hover {
+    letter-spacing: 0.2rem; /* criar um espaçamento de 0.2 entre as letras */
+}
+
+/* HEADER */
+.header {
+    background: var(--bg);
+    display: flex;
+    align-items: center;                 /* Centralizar os elementos */
+    justify-content: space-between;      /* Dar uma espaço estre os elementos */
+    padding: 1.5rem 7%;
+    border-bottom: var(--border);
+    position: fixed;                    /* Isso fará com que o cabeçalho se mantenha fixo mesmo quando rolarmos a página para baixo */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;                      /* Para que o cabeçalho se mantenha sobreposto aos outros elementos, ou seja, fazer com que nada entre na frente dele */  
+ }
+
+ /* Estamos acessando a imagem que está dentro de um elemento que tenha a classe "logo" e que esteja dentro de outro elemento que tenha a classe "header" */
+ .header .logo img {
+    height: 8rem;
+    border-radius: 100%;
+ }
+
+ .header .navbar a {
+    margin: 0 1rem;
+    font-size: 2.3rem;
+    color: #fff;
+    text-transform: capitalize;         /* Primeira letra de cada palavra em maiúscula */
+ }
+
+.header .navbar a:hover {
+    color: var(--main-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--main-color);
+
+}
+
+/* Ícones da Navbar */
+.header .icons {
+    display: flex;                  /* É o responsável por deixar os ícones na horizontal */
+    align-items: center;            /* Centralizar */
+}
+.header .icons div {
+    margin-left: 2rem;
+}
+.header .icons div ion-icon {
+    color: #fff;
+    cursor: pointer;                /* Faz o cursor do mouse virar aquela "mãozinha" */
+    font-size: 2.5rem;
+}
+.header .icons div ion-icon:hover {
+    color: var(--main-color);       /* A cor muda pra vermelho quando colocamos o mouse em cima */
+}
+#menu-btn{
+    display: none;                  /* Tirando o ícone de menu da navbar */
+}
+
+/* HOME */
+.home {
+    position: relative;                               /* Para que a imagem que coloquemos no HOME, seja sobreposta pelos demais itens. Pra dar um efeito legal de imagem de fundo */
+    min-height: 85vh; 
+    display: flex;
+    align-items: center;
+    background: url(/images/home.jpg) no-repeat;      /* Queremos colocar a imagem "home" como fundo */
+    background-size: cover;                           /* Para que a imagem de fundo preencha por completo na horizontal */
+    background-position: center;
+    border-bottom: var(--border);
+}
+
+/* O "before" é um pseudoelemento, e vai adicionar alguns elementos decorativos antes do conteúdo real */
+.home::before {
+    content: "";                        /* Não queremos adicionar nenhum conteúdo a ele, apenas para efeito visual mesmo */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);  /* Colocando opacidade na imagem de fundo */
+    z-index: 1;                        /* Determinando a hierarquia do pseudoelemento */
+}
+.home .content {
+    max-width: 80rem;
+    position: relative;
+    z-index: 2;
+}
+.home .content h3 {
+    font-size: 4.5rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+.home .content p {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: lighter;           /* Como se fosse um negrito mais leve */
+    line-height: 1.5;               /* Distância de uma linha para outra */
+    padding: 1rem 0;
+}
+
+/* SOBRE */
+.about .row {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    flex-wrap: wrap ;              /* Se ultrapassar os limites do container, eu quero que os elementos se quebrem automaticamente */
+    border: var(--border);
+}
+.about .row .image {
+    flex: 0.3 1 50rem;               /* Isso faz com que os itens que possuam essa característica "flex", cresçam e encolham proporcionalmente */
+}
+.about .row .image img {
+    width: 100%;
+}
+.about .row .content {
+    flex: 1 1 50rem;
+    padding: 2rem;
+} 
+.about .row .content h3 {
+    font-size: 4rem;
+    color: #fff;
+}    
+.about .row .content p {
+    font-size: 2rem;
+    color: #ccc;
+    padding: 1rem 0;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+
+/* MENU */
+.menu .box-container {
+    display: grid;                          /* Transforma a estrutura do layout em linhas e colunas */
+    /* Observações sobre a linha abaixo:
+    grid-template-columns = é a forma que utilizamos para manusear essas linhas e colunas
+    repeat(auto-fit) = isso fará com que a quantidade de colunas presentes em cada linha seja definida automaticamente de acordo com o tamanho do container. Aqui criamos a RESPONSIVIDADE 
+    minmax(30rem) = determina o tamanho mínimo e máximo para cada elemento/coluna
+    1fr = faz com que cada elemento possa crescer proporcionalmente até ocupar uma fração (1fr) igual do espaço restante. */
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));    
+    gap: 15rem;                            /* Espaçamento entre as colunas */
+}
+.menu .box-container .box {
+    padding: 5rem;
+    text-align: center;
+    border: var(--border);
+    background: var(--bg-card);
+}
+.menu .box-container .box img{
+    height: 25rem;
+    border-radius: 100%;
+}
+.menu .box-container .box h3 {
+    color: #fff;
+    font-size: 3rem;
+    padding: 1rem 0;
+}
+.menu .box-container .box .price{
+    color: #fff;
+    font-size: 2.5rem;
+    padding: 0.5rem 0;
+}
+.menu .box-container .box .price span {
+    font-size: 1.8rem;
+    text-decoration: line-through;    /* Adicionar a linha que passa em cima do número */
+    font-weight: lighter;
+}
+.menu .box-container .box:hover {
+    background: #fff;
+}
+
+/* Sinal de Maior (>) = estamos selecionando os elementos FILHOS do elemento box
+   Asterisco (*) = indica que queremos selecionar TODOS os filhos 
+Exemplo: se quiséssemos selecionar apenas o título que está dentro do elemento box, ficaria assim: .menu .box-container .box:hover > h3 */
+.menu .box-container .box:hover > * {
+    color: black;
+}
+
+
+/* PROMOÇÕES */
+.products .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 15rem;
+}
+.products .box-container .box {
+    border: var(--border);
+    background: var(--bg-card);
+    padding: 5rem;
+    text-align: center;
+}
+.products .box-container .box .image img {
+    height: 35rem;
+    padding: 3rem;
+}
+.products .box-container .box .icons a ion-icon{
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    color: white;
+    font-size: 3rem;
+    border: var(--border);
+    margin: 0.3rem;
+}
+.products .box-container .box .icons a ion-icon:hover{
+    color: var(--main-color);
+}
+.products .box-container .box .text h3 {
+    color: #fff;
+    font-size: 3rem;
+}
+.products .box-container .box .text i {
+    color: var(--main-color);
+    font-size: 2rem;
+}
+.products .box-container .box .price  {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-top: 1.5rem;
+    
+}
+.products .box-container .box .price span {
+    color: #fff;
+    text-transform: lowercase;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+
+/* AVALIAÇÕES */
+.review .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+.review .box-container .box {
+    border: var(--border);
+    text-align: center;    /* Centralizando todo o conteúdo da box */
+    padding: 4rem;
+}
+.review .box-container .box p {
+    font-size: 2rem;
+    line-height: 3rem;   /* Espaço entre as linhas. Espaçamento entre linhas */
+    text-align: center;
+    padding-bottom: 3rem;
+    color: #ccc;
+}
+.user {
+    border-radius: 100%;
+    height: 10rem;
+    width: 10rem;
+}
+.review .box-container .box h3 {
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+}
+.review .box-container .box .icons i {
+    font-size: 2.5rem;
+    color: var(--main-color);
+}
+
+
+/* RODAPÉ/FOOTER */
+.footer {
+    text-align: center;
+    background: var(--bg);  
+}
+.heading-footer {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 1.5rem
+}
+.heading-footer span {
+    color: var(--main-color);
+}
+.footer .container {
+    display: flex;
+    flex-wrap: wrap;                    /* Caso o conteúdo ultrapasse os limites do container, será quebrado automaticamente */
+    justify-content: space-between;     /* Para criar um espaço entre os elementos, igual fizemos no cabeçalho */
+    padding: 0 7%;
+}
+.footer .footer-col {
+    flex: 1 1 25rem;                    /* Para que os elementos, colunas, possuam o mesmo tamanho */
+}
+.footer-col ul {
+    list-style: none; 
+    padding: 0; 
+}
+.footer-col ul li {
+    margin: 1rem;
+}
+.footer-col ul li a {
+    color: #ccc;
+    text-decoration: none;              /* Remover decoração */
+    font-size: 2rem;
+}
+.footer-col ul li a:hover {
+    color: var(--main-color);
+}
+.footer-col .social-links a {
+    margin: 0 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    font-size: 3rem;
+    color: #fff;
+}
+.footer-col .social-links a:hover {
+    color: var(--main-color);
+} 
+.footer-bottom {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+    border-top: var(--border);
+    color: #fff;
+    margin-top: 2rem;
+    padding: 3rem;
+}
+
+
+
+
+
+/* Medias Queries - RESPONSIVIDADE */
+
+/* @media (condição) {
+  Estilos que serão aplicados se a condição for verdadeira  
+} */
+
+@media (max-width: 1000px) {
+    html { 
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 1.5rem 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 750px) {
+    /* fazendo o ícone do menu aparecer */
+    #menu-btn {
+        display: inline-block;
+    }
+
+    .header .navbar {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        background: #fff;
+        width: 30rem;
+        height: calc(100vh - 9.5rem);
+    }
+
+    .header .navbar a { 
+        color: var(--bg-card);
+        display: block;
+        margin: 1.5rem;
+        padding: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .home { 
+        background-position: left;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .home .content h3 {
+        font-size: 4.5rem;
+    }
+
+    .home .content p {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+}
